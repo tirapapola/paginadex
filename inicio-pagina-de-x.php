@@ -13,11 +13,13 @@ if(file_exists($fichero)){
 $usuario_correcto = "admin";
 $contraseña_correcta = "admin";
 
+
 // inicializamos contador de intentos si no existe
 if(!isset($_SESSION['fallo'])) {
     $_SESSION['fallo'] = 3;
 }
 
+$fallo= $_SESSION['fallo'];
 $usuario = $_POST["nombre"] ?? "";
 $contraseña = $_POST["pass"] ?? "";
 
@@ -47,11 +49,9 @@ if($usuario !== "" || $contraseña !== ""){
 <body>
 <center>
 <form method="POST">
-    <?php
-    if($error !== ""){
-        echo "<p>$error</p>";
-    }
-    ?>
+    <?php if($error !== ""): ?>
+        <p><?= $traducciones["error"] . $fallo?></p>
+    <?php endif; ?>
     <p><?php echo $traducciones["usuario"]?></p> <!-- Pregunta de examen, si usas? ?php tienes es usar echo para que muestre en pantalla >? lo muestra sin echo -->
     <input type="text" name="nombre" value="<?php echo htmlspecialchars($usuario, ENT_QUOTES, 'UTF-8'); ?>">
 
