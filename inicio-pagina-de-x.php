@@ -13,15 +13,15 @@ if(file_exists($fichero)){
 $usuario_correcto = "admin";
 $contraseña_correcta = "admin";
 
-// inicializamos contador de intentos si no existe , isset comprueba si existe la variable
-if(!isset($_SESSION['fallo'])){
+// inicializamos contador de intentos si no existe
+if(!isset($_SESSION['fallo'])) {
     $_SESSION['fallo'] = 3;
 }
 
 $usuario = $_POST["nombre"] ?? "";
 $contraseña = $_POST["pass"] ?? "";
 
-
+$error = "";
 
 if($usuario !== "" || $contraseña !== ""){
     if($usuario_correcto == $usuario && $contraseña_correcta == $contraseña){
@@ -60,6 +60,8 @@ if($usuario !== "" || $contraseña !== ""){
 
     <input type="submit">
 </form>
-    </center>
+    
+    
+</center>   
 </body>
 </html>
