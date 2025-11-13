@@ -23,7 +23,7 @@ $fallo= $_SESSION['fallo'];
 $usuario = $_POST["nombre"] ?? "";
 $contraseña = $_POST["pass"] ?? "";
 
-$error = "";
+$MensajeError = "";
 
 if($usuario !== "" || $contraseña !== ""){
     if($usuario_correcto == $usuario && $contraseña_correcta == $contraseña){
@@ -33,7 +33,7 @@ if($usuario !== "" || $contraseña !== ""){
     } else {
         $_SESSION['fallo']--; 
         if($_SESSION['fallo'] > 0){
-            $error = "Te quedan " . $_SESSION['fallo'] . " intentos";
+            $MensajeError = "Te quedan " . $_SESSION['fallo'] . " intentos";
         } else {
             $_SESSION['fallo'] = 3; // se reinicia contador
             header("Location: paginaerror.php");
@@ -48,8 +48,10 @@ if($usuario !== "" || $contraseña !== ""){
 <a href="?idioma=en">Ingles</a>
 <body>
 <center>
-<form method="POST">
-    <?php if($error !== ""): ?>
+<form method="POST">       
+     <p><?= $traducciones["error"] . $fallo?></p>
+
+    <?php if($MensajeError !== ""): ?>
         <p><?= $traducciones["error"] . $fallo?></p>
     <?php endif; ?>
     <p><?php echo $traducciones["usuario"]?></p> <!-- Pregunta de examen, si usas? ?php tienes es usar echo para que muestre en pantalla >? lo muestra sin echo -->
