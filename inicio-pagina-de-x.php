@@ -19,7 +19,6 @@ if(!isset($_SESSION['fallo'])) {
     $_SESSION['fallo'] = 3;
 }
 
-$fallo= $_SESSION['fallo'];
 $usuario = $_POST["nombre"] ?? "";
 $contraseña = $_POST["pass"] ?? "";
 
@@ -32,9 +31,7 @@ if($usuario !== "" || $contraseña !== ""){
         exit;
     } else {
         $_SESSION['fallo']--; 
-        if($_SESSION['fallo'] > 0){
-            $MensajeError = "Te quedan " . $_SESSION['fallo'] . " intentos";
-        } else {
+        if($_SESSION['fallo'] == 0){
             $_SESSION['fallo'] = 3; // se reinicia contador
             header("Location: paginaerror.php");
             exit;
@@ -45,14 +42,13 @@ if($usuario !== "" || $contraseña !== ""){
 
 <html>
 <a href="?idioma=es">Español</a> 
-<a href="?idioma=en">Ingles</a>
+<a href="?idioma=en">Inglés</a>
 <body>
 <center>
 <form method="POST">       
-     <p><?= $traducciones["error"] . $fallo?></p>
-
-    <?php if($MensajeError !== ""): ?>
-        <p><?= $traducciones["error"] . $fallo?></p>
+    
+    <?php if($_SESSION['fallo'] < 3): ?>
+        <p style="color: red;"><?= $traducciones["error"] . $_SESSION['fallo']?></p>
     <?php endif; ?>
     <p><?php echo $traducciones["usuario"]?></p> <!-- Pregunta de examen, si usas? ?php tienes es usar echo para que muestre en pantalla >? lo muestra sin echo -->
     <input type="text" name="nombre" value="<?php echo htmlspecialchars($usuario, ENT_QUOTES, 'UTF-8'); ?>">
