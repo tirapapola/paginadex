@@ -11,6 +11,8 @@ if(file_exists($fichero)){
 ?>
 
 <html>
+    <a href="?idioma=es">Español</a> 
+    <a href="?idioma=en">Inglés</a>
     <body>
         <h1></p><?php echo $traducciones["error404"] ?></h1>
         <p>Por favor, espera 10 segundos para volver a intentarlo</p>
