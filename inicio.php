@@ -1,41 +1,36 @@
 <?php
   session_start();
-
-  if (!isset($SESSION['modo'])) {
-    $SESSION['modo'] = false;
-  }
-
-  
-  if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    if (isset($_POST['cambioEstilo'])) {
-        // Cambia el valor de la variable
-        if ($SESSION['modo']==false){
-          $SESSION['modo'] = true;
-        } else {
-          $SESSION['modo'] = false;
-        }
+  if (isset($_GET["modo"])) {
+    if (!isset($_SESSION["modo"])) {
+      $_SESSION["modo"] = "estiloOscuro";
+    } else {
+      if ($_SESSION["modo"] == "estiloClaro") {
+        $_SESSION["modo"] = "estiloOscuro";
+      } else {
+        $_SESSION["modo"] = "estiloClaro";
+      }
     }
-    echo $SESSION['modo'];
   }
+  $modo = $_SESSION["modo"] ?? "estiloClaro";
+  $CssFile = "$modo.css";
+
 ?>
 <html>
   <head>
     <title>Web X</title>
     <meta charset="utf-8"/>
     <link rel="icon" href="img/tecca.png"type="image/png"sizes="16x16"/>
-    <?php if ($SESSION['modo']==false): ?>
-    <link rel="stylesheet" href="estiloClaro.css"/>
-  <?php else: ?>
-    <link rel="stylesheet" href="estiloOscuro.css"/>
-  <?php endif; ?>
+    <link rel="stylesheet" href="<?= $CssFile ?> "/>
+   
   </head>
   <body>
     <main>
       <div class="opciones">
-        <form action="" method="post">
-          <input type="hidden" name="cambiar_variable" value="true">
-          <button type="on" name="cambioEstilo"><?php if ($SESSION['modo']==false): ?>Modo Oscuro<?php else: ?>Modo Claro<?php endif; ?></button>
-        </from>
+        <?php if ($modo == "estiloClaro"): ?> 
+          <a href="?modo=cambiar">Modo Oscuro</a>
+        <?php else: ?>
+          <a href="?modo=cambiar">Modo Claro</a>
+        <?php endif; ?>
       </div>
       <div class="navegacion">
         <nav>

@@ -1,14 +1,7 @@
 <?php
 session_start(); // necesario para usar $_SESSION
 
-$idioma = $_GET["idioma"] ?? "es";
-$fichero = "$idioma.php";
-
-if(file_exists($fichero)){
-    require $fichero;
-}else{
-    require "es.php";
-}
+include "control-idioma.php";
 
 $usuario_correcto = "admin";
 $contraseña_correcta = "admin";
@@ -47,7 +40,7 @@ if($usuario !== "" || $contraseña !== ""){
     <link rel="icon" href="img/tecca.png"type="image/png"sizes="16x16"/>
      <link rel="stylesheet" href="estiloClaro.css"/>
 </head>
-<a href="?idioma=es">Español</a> 
+<a href="?idioma=es">Español</a>
 <a href="?idioma=en">Inglés</a>
 <body>
 

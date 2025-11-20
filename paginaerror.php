@@ -1,13 +1,10 @@
 <?php
-$idioma = $_GET["idioma"] ?? "es";
-$fichero = "$idioma.php";
+
+session_start();
+
+include "control-idioma.php";
 
 
-if(file_exists($fichero)){
-    require $fichero;
-}else{
-    require "es.php";
-}
 ?>
 
 <html>
