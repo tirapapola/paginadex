@@ -1,23 +1,29 @@
 <?php
-  $darkmode = false;
+  session_start();
+
+  if (!isset($SESSION['modo'])) {
+    $SESSION['modo'] = false;
+  }
+
+  
   if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (isset($_POST['cambioEstilo'])) {
         // Cambia el valor de la variable
-        if ($darkmode==false){
-          $darkmode = true;
+        if ($SESSION['modo']==false){
+          $SESSION['modo'] = true;
         } else {
-          $darkmode = false;
+          $SESSION['modo'] = false;
         }
     }
-    echo $darkmode;
-}
+    echo $SESSION['modo'];
+  }
 ?>
 <html>
   <head>
     <title>Web X</title>
     <meta charset="utf-8"/>
     <link rel="icon" href="img/tecca.png"type="image/png"sizes="16x16"/>
-    <?php if ($darkmode==false): ?>
+    <?php if ($SESSION['modo']==false): ?>
     <link rel="stylesheet" href="estiloClaro.css"/>
   <?php else: ?>
     <link rel="stylesheet" href="estiloOscuro.css"/>
@@ -26,9 +32,9 @@
   <body>
     <main>
       <div class="opciones">
-        <form action"" method="post">
+        <form action="" method="post">
           <input type="hidden" name="cambiar_variable" value="true">
-          <button type="submit" name="cambioEstilo"><?php if ($darkmode==false): ?>Modo Oscuro<?php else: ?>Modo Claro<?php endif; ?></button>
+          <button type="on" name="cambioEstilo"><?php if ($SESSION['modo']==false): ?>Modo Oscuro<?php else: ?>Modo Claro<?php endif; ?></button>
         </from>
       </div>
       <div class="navegacion">
