@@ -4,8 +4,12 @@ session_start();
 
 include "control-idioma.php";
 
+$idioma = $_SESSION['idioma'] ?? 'es';  // por defecto español
+
+
 
 ?>
+
 
 <html>
     <a href="?idioma=es">Español</a> 

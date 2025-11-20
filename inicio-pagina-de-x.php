@@ -38,20 +38,23 @@ if($usuario !== "" || $contraseña !== ""){
  <title>Web X</title>
     <meta charset="utf-8"/>
     <link rel="icon" href="img/tecca.png"type="image/png"sizes="16x16"/>
-     <link rel="stylesheet" href="estiloClaro.css"/>
+    <link rel="stylesheet" href="<?= $css?>"/>
+
+
 </head>
 <a href="?idioma=es">Español</a>
 <a href="?idioma=en">Inglés</a>
 <body>
+
+<a href="?modo=cambiar">claro/oscuro</a>
 
 <form method="POST">       
     
     <?php if($_SESSION['fallo'] < 3): ?>
         <p style="color: red;"><?= $traducciones["error"] . $_SESSION['fallo']?></p>
     <?php endif; ?>
-    <p><?php echo $traducciones["usuario"]?></p> <!-- Pregunta de examen, si usas? ?php tienes es usar echo para que muestre en pantalla >? lo muestra sin echo -->
+    <p><?php echo $traducciones["usuario"]?></p> 
     <input type="text" name="nombre" value="<?php echo htmlspecialchars($usuario, ENT_QUOTES, 'UTF-8'); ?>">
-
     <p><?php echo $traducciones["contraseña"] ?></p>
     <input type="password" name="pass">
 
