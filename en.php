@@ -1,6 +1,7 @@
 <?php
 
     $traducciones = [
+        "error403" => "Please wait 2 seconds before trying again.",
         "error404" => "You have exceeded the allowed number of attempts",
         "error" => "Number of remaining attempts: ",
         "titulos1" => "My web",

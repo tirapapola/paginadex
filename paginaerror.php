@@ -15,7 +15,7 @@ if(file_exists($fichero)){
     <a href="?idioma=en">Inglés</a>
     <body>
         <h1></p><?php echo $traducciones["error404"] ?></h1>
-        <p>Por favor, espera 10 segundos para volver a intentarlo</p>
+        <h1></p><?php echo $traducciones["error403"] ?></h1>
         <a href="inicio-pagina-de-x.php">Volver al login</a>
     </body>
 </html>

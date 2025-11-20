@@ -27,7 +27,7 @@ $MensajeError = "";
 if($usuario !== "" || $contraseña !== ""){
     if($usuario_correcto == $usuario && $contraseña_correcta == $contraseña){
         $_SESSION['fallo'] = 3; // reiniciamos al login correcto
-        header("Location: home.php");
+        header("Location: inicio.php");
         exit;
     } else {
         $_SESSION['fallo']--; 
@@ -41,10 +41,16 @@ if($usuario !== "" || $contraseña !== ""){
 ?>
 
 <html>
+<head>
+ <title>Web X</title>
+    <meta charset="utf-8"/>
+    <link rel="icon" href="img/tecca.png"type="image/png"sizes="16x16"/>
+     <link rel="stylesheet" href="estiloClaro.css"/>
+</head>
 <a href="?idioma=es">Español</a> 
 <a href="?idioma=en">Inglés</a>
 <body>
-<center>
+
 <form method="POST">       
     
     <?php if($_SESSION['fallo'] < 3): ?>
@@ -57,9 +63,6 @@ if($usuario !== "" || $contraseña !== ""){
     <input type="password" name="pass">
 
     <input type="submit">
-</form>
-    
-    
-</center>   
+</form> 
 </body>
 </html>
