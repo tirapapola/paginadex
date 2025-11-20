@@ -1,8 +1,44 @@
 <?php
 session_start(); // necesario para usar $_SESSION
 
+if(isset($_GET["modo"])){
+    if (!isset( $_SESSION['modo'])){
+        $_SESSION['modo'] = "oscuro";
+    }else
+    {
+        if($_SESSION['modo'] == "claro"){
+            $_SESSION['modo'] = "oscuro";
+        } else {
+            $_SESSION['modo'] = "claro";
+        }
+    }
+}
+
+$modo = $_SESSION['modo'] ?? "claro";
+$css = ("estilo" . ucfirst($modo) . ".css");
+
+
+
 $idioma = $_GET["idioma"] ?? "es";
 $fichero = "$idioma.php";
+
+/*
+if (isset($_SESSION['fichero'])) {
+    $idioma = $_SESSION['fichero'];
+} else {
+    $_SESSION['fichero'] = $idioma;
+}
+*/
+
+
+if (isset($_SESSION['idioma'])) {
+    $idioma = $_SESSION['idioma'];
+} else {
+    $_SESSION['idioma'] = $idioma;
+}
+
+
+
 
 if(file_exists($fichero)){
     require $fichero;
@@ -45,20 +81,24 @@ if($usuario !== "" || $contraseña !== ""){
  <title>Web X</title>
     <meta charset="utf-8"/>
     <link rel="icon" href="img/tecca.png"type="image/png"sizes="16x16"/>
-     <link rel="stylesheet" href="estiloClaro.css"/>
+    <link rel="stylesheet" href="<?= $css?>"/>
+
+
 </head>
+
 <a href="?idioma=es">Español</a> 
 <a href="?idioma=en">Inglés</a>
 <body>
+
+<a href="?modo=cambiar">claro/oscuro</a>
 
 <form method="POST">       
     
     <?php if($_SESSION['fallo'] < 3): ?>
         <p style="color: red;"><?= $traducciones["error"] . $_SESSION['fallo']?></p>
     <?php endif; ?>
-    <p><?php echo $traducciones["usuario"]?></p> <!-- Pregunta de examen, si usas? ?php tienes es usar echo para que muestre en pantalla >? lo muestra sin echo -->
+    <p><?php echo $traducciones["usuario"]?></p> 
     <input type="text" name="nombre" value="<?php echo htmlspecialchars($usuario, ENT_QUOTES, 'UTF-8'); ?>">
-
     <p><?php echo $traducciones["contraseña"] ?></p>
     <input type="password" name="pass">
 

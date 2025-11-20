@@ -12,8 +12,11 @@ body {
       background-position: center;
       background-color: rgb(255, 255, 255);
       font-family: Arial, sans-serif;
+      color: rgb(0, 0, 0);
+
 
 }
+
 footer {
   display: flex;
   justify-content: center;

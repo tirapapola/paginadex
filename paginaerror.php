@@ -1,6 +1,12 @@
 <?php
+
+session_start(); // necesario para usar $_SESSION
+
 $idioma = $_GET["idioma"] ?? "es";
 $fichero = "$idioma.php";
+
+$idioma = $_SESSION['idioma'] ?? 'es';  // por defecto español
+
 
 
 if(file_exists($fichero)){
@@ -8,8 +14,8 @@ if(file_exists($fichero)){
 }else{
     require "es.php";
 }
-?>
 
+?>
 <html>
     <a href="?idioma=es">Español</a> 
     <a href="?idioma=en">Inglés</a>
