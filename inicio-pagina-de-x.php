@@ -1,6 +1,20 @@
 <?php
 session_start(); // necesario para usar $_SESSION
 
+if (isset($_GET["modo"])) {
+    if (!isset($_SESSION["modo"])) {
+      $_SESSION["modo"] = "estiloOscuro";
+    } else {
+      if ($_SESSION["modo"] == "estiloClaro") {
+        $_SESSION["modo"] = "estiloOscuro";
+      } else {
+        $_SESSION["modo"] = "estiloClaro";
+      }
+    }
+  }
+  $modo = $_SESSION["modo"] ?? "estiloClaro";
+  $CssFile = "$modo.css";
+
 include "control-idioma.php";
 
 $usuario_correcto = "admin";
@@ -38,7 +52,7 @@ if($usuario !== "" || $contraseña !== ""){
  <title>Web X</title>
     <meta charset="utf-8"/>
     <link rel="icon" href="img/tecca.png"type="image/png"sizes="16x16"/>
-    <link rel="stylesheet" href="<?= $css?>"/>
+    <link rel="stylesheet" href="<?= $CssFile?>"/>
 
 
 </head>
@@ -46,7 +60,13 @@ if($usuario !== "" || $contraseña !== ""){
 <a href="?idioma=en">Inglés</a>
 <body>
 
-<a href="?modo=cambiar">claro/oscuro</a>
+     <?php if ($modo == "estiloClaro"): ?> 
+          <a href="?modo=cambiar">Modo Oscuro</a>
+        <?php else: ?>
+          <a href="?modo=cambiar">Modo Claro</a>
+        <?php endif; ?>
+
+<!-- <a href="?modo=cambiar">claro/oscuro</a> -->
 
 <form method="POST">       
     
