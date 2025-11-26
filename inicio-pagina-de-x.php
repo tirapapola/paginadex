@@ -1,7 +1,9 @@
 <?php
-session_start(); // necesario para usar $_SESSION
+  session_start(); // necesario para usar $_SESSION
 
-if (isset($_GET["modo"])) {
+  include "control-estilo.php";
+
+/* if (isset($_GET["modo"])) {
     if (!isset($_SESSION["modo"])) {
       $_SESSION["modo"] = "estiloOscuro";
     } else {
@@ -11,7 +13,8 @@ if (isset($_GET["modo"])) {
         $_SESSION["modo"] = "estiloClaro";
       }
     }
-  }
+  } */
+
   $modo = $_SESSION["modo"] ?? "estiloClaro";
   $CssFile = "$modo.css";
 
@@ -56,8 +59,8 @@ if($usuario !== "" || $contraseña !== ""){
 
 
 </head>
-<a href="?idioma=es">Español</a>
-<a href="?idioma=en">Inglés</a>
+  <a href="?idioma=es"><img src="img/es.png"></a>
+  <a href="?idioma=en"><img src="img/en.png"></a>
 <body>
 
      <?php if ($modo == "estiloClaro"): ?> 

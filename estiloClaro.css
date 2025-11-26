@@ -4,6 +4,12 @@
   align-items: center;
 }
 
+.integrantes {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 body {
 
       background-image: url('img/silla.png');
@@ -13,8 +19,6 @@ body {
       background-color: rgb(255, 255, 255);
       font-family: Arial, sans-serif;
       color: rgb(0, 0, 0);
-
-
 }
 
 footer {

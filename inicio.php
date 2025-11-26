@@ -1,18 +1,7 @@
 <?php
   session_start();
-  if (isset($_GET["modo"])) {
-    if (!isset($_SESSION["modo"])) {
-      $_SESSION["modo"] = "estiloOscuro";
-    } else {
-      if ($_SESSION["modo"] == "estiloClaro") {
-        $_SESSION["modo"] = "estiloOscuro";
-      } else {
-        $_SESSION["modo"] = "estiloClaro";
-      }
-    }
-  }
-  $modo = $_SESSION["modo"] ?? "estiloClaro";
-  $CssFile = "$modo.css";
+
+  include "control-estilo.php";
 
 ?>
 <html>
@@ -26,6 +15,8 @@
   <body>
     <main>
       <div class="opciones">
+        <a href="?idioma=es"><img src="img/es.png"></a>
+        <a href="?idioma=en"><img src="img/en.png"></a>
         <?php if ($modo == "estiloClaro"): ?> 
           <a href="?modo=cambiar">Modo Oscuro</a>
         <?php else: ?>
@@ -38,6 +29,21 @@
             <a href="cuestionario.php">CUESTIONARIO</a>
         </nav>
     </div>
+    <div class="integrantes">
+        <!--
+        <img src="img/oscarProgramador.png" height="200">
+        <img src="img/abrahamNube.png" height="200">
+      -->
+
+        <figure>
+          <img src="img/oscarProgramador.png" height="200"/>
+          <figcaption> Oscar programador </figcaption>
+        </figure>
+        <figure>
+          <img src="img/abrahamNube.png" height="200"/>
+          <figcaption> Abraham experto en Cloud </figcaption>
+        </figure>
+      </div>
     </main>
     <footer>
         Almirante Abraham & Cheriff Oscar &copy; 2025

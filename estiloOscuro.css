@@ -12,6 +12,14 @@ body {
 .navegacion {
   display: flex;
   justify-content: center;
+  background-size:250px;
+  align-items: center;
+  background-color: burlywood;
+}
+
+.integrantes {
+  display: flex;
+  justify-content: center;
   align-items: center;
 }
 

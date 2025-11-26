@@ -1,3 +1,9 @@
+<?php
+    session_start();
+
+    include "control-estilo.php";
+?>
+
 <html>
 <head>
   <title>Cuestionario X</title>
@@ -6,6 +12,13 @@
   <link rel="stylesheet" href="estiloClaro.css"/>
 </head>
     <body>
+        <a href="?idioma=es"><img src="img/es.png"></a>
+        <a href="?idioma=en"><img src="img/en.png"></a>
+        <?php if ($modo == "estiloClaro"): ?>
+            <a href="?modo=cambiar">Modo Oscuro</a>
+        <?php else: ?>
+            <a href="?modo=cambiar">Modo Claro</a>
+        <?php endif; ?>
         <form action="resultado.php" method="post">
             <!-- Pregunta 1 -->
             <p><b>¿Donde se ejecuta PHP?</b></p>
